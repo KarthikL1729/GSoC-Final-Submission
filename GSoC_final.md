@@ -9,14 +9,6 @@ author:
 colorlinks: true
 ---
 
----
-geometry:
-- top=25mm
-- left=25mm
-- right=25mm
-- heightrounded
-...
-
 ## Introduction
 
 I am L Lakshmanan, and I have worked on the proposal I put forward to the FOSSi Foundation regarding `Sootty`, the terminal-based graphical waveform viewer, over the past three months under the Google Summer of Code program. 
@@ -76,7 +68,7 @@ The final format of the saved query in `queries.yaml` is as follows.
 Input query is
 
 ```
-sootty example/CLA.vcd -w "a, b, res" -s "AXI(a, b)" -l 20 -S AdderTest
+sootty example/CLA.vcd -w "a, b, res" -s "axi(a, b)" -l 20 -S AdderTest
 ```
 
 The saved data is 
@@ -94,7 +86,7 @@ AdderTest:
     radix: 10
     reload: null
     save: AdderTest
-    start: AXI(a, b)
+    start: axi(a, b)
     wires: a, b, Res
 ```
 
