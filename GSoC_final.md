@@ -31,7 +31,7 @@ My project proposal was titled "Improving Query Language Features in `Sootty`", 
 
 ## Contribution
 
-The main classes I had to work with are the `ValueChange` and `WireTrace` classes, while also making changes to the grammar file. I also had to add a flag for the save functionality, which was in the main interface and the code for the save functionality has been written from scratch.
+The main classes I had to work with are the `ValueChange` and `WireTrace` classes, while also making changes to the grammar file. The `WireTrace` class is the class that directly gets data from the `vcd` files, while the `ValueChange` class is the base class used for all the operations and is defined using a `SortedDict`. So the `ValueChange` class is the lowest level of abstraction and that is where all the operations that we can perform on the wires are defined. I also had to add a flag for the save functionality, which was in the main interface and the code for the save functionality has been written from scratch.
 
 ### Implementation of bitwise operators for multi-wire busses
 
