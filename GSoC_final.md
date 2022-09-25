@@ -49,8 +49,8 @@ This PR includes the modifications required to include the bitwise operator func
 - INV - `~`
 - NOT - `!`
 
-The logical operators are lower in precedence as compared to the bitwise operators. This required the grammar of the language to be tweaked in the lark file and methods to be added to the ValueChange class as well to achieve the functionality we desired. The operators are now fully integrated with the language and can be used with queries. 
-
+The logical operators are lower in precedence as compared to the bitwise operators. This required the grammar of the language to be tweaked in the lark file and methods to be added to the ValueChange class as well to achieve the functionality we desired. The operators are now fully integrated with the language and can be used with queries. The inclusion of this feature was mainly because the temporal logic language that `Sootty` uses did not have a simple straight forward way to run bitwise operations and this is an essential feature in a circuit debugging software. Hence, this implementation fixes this issue.
+ 
 ### Addition of a save flag to allow for a more reusable query interface
 
 The relevant PRs are given below.
@@ -113,6 +113,18 @@ The relevant PRs are given below.
 The ready-valid detection is implemented mainly in the WireTrace class, and changes had to be made to the syntax of the query language to accommodate the desired function call syntax. The implemented version right now allows for extensibility in the sense that we can add multiple functions simply by adding the required functionality in the WireTrace class. The call is also a part of the grammar now.
 
 The function can be called by using `axi(<ready wire>, <valid wire>)` as a condition along with the `-s`, `-e` or `-b` flags just like any other part of the query language to allow us to detect the ready-valid handshake.
+
+For example, if the query we input is of the form
+
+```
+sootty example/CLA.vcd -w "a, b, AXI(a, b)" -l 20 -S AXItest
+```
+
+We get the following output. The AXI transaction is detected by the line marked `(a & b)`. This is because the AXI implementation right now is implemented at its core with an AND operator, and this implementation can be made more elaborate later.
+
+![AXI test example](AXItest.png)
+
+The AXI transaction detection functionality is mainly to allow users to easily use the condition for the start or end of a transaction to display the required wires in the time frame they need. This allows for simpler debugging of circuits.
 
 ### Miscellaneous
 
